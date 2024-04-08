@@ -21,5 +21,3 @@ spec:
             - name: mqtt
               containerPort: 1883
               protocol: TCP
-        - name: {{ .Values.mqttListener.name }}
-          image: "{{ .Values.mqttListener.image }}"

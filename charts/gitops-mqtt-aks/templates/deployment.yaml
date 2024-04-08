@@ -18,8 +18,8 @@ spec:
         - name: {{ .Values.mqttBroker.name }}
           image: "{{ .Values.mqttBroker.image }}"
           ports:
-            - name: {{ .Values.mqttBroker.ports[0].name }}
-              containerPort: {{ .Values.mqttBroker.ports[0].containerPort }}
+            - name: {{ .Values.mqttBroker.ports.name }}
+              containerPort: {{ .Values.mqttBroker.ports.containerPort }}
               protocol: TCP
         - name: {{ .Values.mqttListener.name }}
           image: "{{ .Values.mqttListener.image }}"

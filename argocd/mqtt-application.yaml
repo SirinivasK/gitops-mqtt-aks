@@ -7,13 +7,13 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/SirinivasK/gitops-mqtt-aks.git'
-    targetRevision: HEAD
+    targetRevision: main
     path: charts/gitops-mqtt-aks
     helm:
       valueFiles:
         - values.yaml
   destination:
-    server: 'https://gitops-aks-exp-wus2-dns-f0kqe0qi.hcp.westus2.azmk8s.io'
+    server: 'https://gitops-aks-exp-wus2-dns-f0kqe0qi.hcp.westus2.azmk8s.io:443'
     namespace: default
   syncPolicy:
     automated:

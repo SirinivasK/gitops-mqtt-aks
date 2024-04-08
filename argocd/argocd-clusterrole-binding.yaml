@@ -1,0 +1,12 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: argocd-manager-role-binding
+subjects:
+- kind: ServiceAccount
+  name: argocd-manager  # Or the name of your Argo CD Service Account
+  namespace: argocd
+roleRef:
+  kind: ClusterRole
+  name: argocd-manager-role
+  apiGroup: rbac.authorization.k8s.io

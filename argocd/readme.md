@@ -1,4 +1,4 @@
-### ##########################################################################################################################
+## argocd how to guide
 Installing Argo CD in an Azure Kubernetes Service (AKS) cluster involves several steps, primarily focused on applying Argo CD's installation manifests to your cluster. Below is a detailed guide on how to achieve this:
 
 ### Prerequisites

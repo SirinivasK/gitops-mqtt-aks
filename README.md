@@ -1,7 +1,3 @@
-Creating a comprehensive README guide that encompasses setting up an Azure Kubernetes Service (AKS) cluster using Terraform, deploying an MQTT broker on it using Helm, managing deployments with Argo CD, and incorporating troubleshooting tips requires a structured approach. This document aims to guide users through the entire process, ensuring they can replicate the setup without issues.
-
----
-
 # Deploying MQTT Broker on AKS with Terraform, Helm, and Argo CD
 
 This guide provides step-by-step instructions on deploying an MQTT broker within an AKS cluster, leveraging Terraform for infrastructure provisioning, Helm for application deployment, and Argo CD for continuous deployment.

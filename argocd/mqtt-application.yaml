@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mqtt-application
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/SirinivasK/gitops-mqtt-aks.git'
+    targetRevision: HEAD
+    path: charts/gitops-mqtt-aks
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: 'https://gitops-aks-exp-wus2-dns-f0kqe0qi.hcp.westus2.azmk8s.io'
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -396,3 +396,7 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+#IaC/terraform/infra/versions.tf
+*.tfstate.*
+IaC/terraform/infra/.terraform

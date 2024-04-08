@@ -1,0 +1,14 @@
+# Default values for my-application.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+mqttBroker:
+  image: eclipse-mosquitto:latest
+  name: mqtt-broker
+  ports:
+    - name: mqtt
+      containerPort: 1883
+
+mqttListener:
+  image: eclipse-mosquitto:latest
+  name: mqtt-listener

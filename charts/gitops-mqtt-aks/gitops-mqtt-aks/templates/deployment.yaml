@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "my-application.fullname" . }}
+  labels:
+    {{- include "my-application.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "my-application.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "my-application.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Values.mqttBroker.name }}
+          image: "{{ .Values.mqttBroker.image }}"
+          ports:
+            - name: {{ .Values.mqttBroker.ports[0].name }}
+              containerPort: {{ .Values.mqttBroker.ports[0].containerPort }}
+              protocol: TCP
+        - name: {{ .Values.mqttListener.name }}
+          image: "{{ .Values.mqttListener.image }}"

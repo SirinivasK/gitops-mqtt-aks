@@ -1,0 +1,40 @@
+name: Install Argo CD on AKS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Iac/**'
+
+jobs:
+  deploy_argo_cd:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Set up Kubectl
+      uses: azure/setup-kubectl@v1
+
+    - name: Connect to AKS
+      run: |
+        az aks get-credentials --resource-group <ResourceGroupName> --name <ClusterName> --overwrite-existing --admin
+
+    - name: Install Argo CD
+      run: |
+        kubectl create namespace argocd
+        kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+    - name: Wait for Argo CD to be ready
+      run: |
+        kubectl wait --namespace argocd --for=condition=ready pod --selector=app.kubernetes.io/name=argocd-server --timeout=90s
+
+    - name: Expose Argo CD API Server
+      run: |
+        kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'

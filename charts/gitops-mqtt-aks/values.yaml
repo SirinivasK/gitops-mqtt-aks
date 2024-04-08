@@ -1,6 +1,5 @@
-# Default values for my-application.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+# Add this to your existing values.yaml
+replicaCount: 1
 
 mqttBroker:
   image: eclipse-mosquitto:latest

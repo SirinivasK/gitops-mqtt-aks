@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "gitops-mqtt-aks.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "gitops-mqtt-aks.fullname" . }}:1883']
   restartPolicy: Never

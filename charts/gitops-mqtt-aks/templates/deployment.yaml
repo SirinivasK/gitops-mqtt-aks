@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "my-application.fullname" . }}
+  name: {{ include "gitops-mqtt-aks.fullname" . }}
   labels:
-    {{- include "my-application.labels" . | nindent 4 }}
+    {{- include "gitops-mqtt-aks.labels" . | nindent 4 }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.replicaCount | default 1 }}
   selector:
     matchLabels:
-      {{- include "my-application.selectorLabels" . | nindent 6 }}
+      {{- include "gitops-mqtt-aks.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "my-application.selectorLabels" . | nindent 8 }}
+        {{- include "gitops-mqtt-aks.selectorLabels" . | nindent 8 }}
     spec:
       containers:
         - name: {{ .Values.mqttBroker.name }}
           image: "{{ .Values.mqttBroker.image }}"
           ports:
-            - name: {{ .Values.mqttBroker.ports.name }}
-              containerPort: {{ .Values.mqttBroker.ports.containerPort }}
+            - name: mqtt
+              containerPort: 1883
               protocol: TCP
         - name: {{ .Values.mqttListener.name }}
           image: "{{ .Values.mqttListener.image }}"
